@@ -16,7 +16,7 @@ developmentChains.includes(network.name)
               await fundMe.fund({ value: sendValue })
               await fundMe.withdraw()
               const endingBalance = await fundMe.provider.getBalance(
-                fundMe.address
+                  fundMe.address
               )
               assert.equal(endingBalance.toString(), "0")
           })
