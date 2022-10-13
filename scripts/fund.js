@@ -1,17 +1,16 @@
-const { getNamedAccounts, ethers } = require("hardhat")
+const { ethers, getNamedAccounts } = require("hardhat")
 
 async function main() {
     const { deployer } = await getNamedAccounts()
     const fundMe = await ethers.getContract("FundMe", deployer)
-    console.log("Funding Contract...")
+    console.log(`Got contract FundMe at ${fundMe.address}`)
+    console.log("Funding contract...")
     const transactionResponse = await fundMe.fund({
         value: ethers.utils.parseEther("0.1"),
     })
-    await transactionResponse.wait(1)
+    await transactionResponse.wait()
     console.log("Funded!")
 }
-
-async function main() {}
 
 main()
     .then(() => process.exit(0))
